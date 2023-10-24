@@ -107,7 +107,11 @@ class WP_Theme_JSON_Resolver {
 				return static::$theme_json_file_cache[ $file_path ];
 			}
 
+			$contents = wp_cache_get( $file_path, 'json' );
+			if ( ! is_array( $contents ) ) {
 			$decoded_file = wp_json_file_decode( $file_path, array( 'associative' => true ) );
+			wp_cache_set( $file_path, $decoded_file, 'json' );
+			}
 			if ( is_array( $decoded_file ) ) {
 				static::$theme_json_file_cache[ $file_path ] = $decoded_file;
 				return static::$theme_json_file_cache[ $file_path ];
