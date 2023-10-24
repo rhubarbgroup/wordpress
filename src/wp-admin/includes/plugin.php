@@ -331,7 +331,7 @@ function get_plugins( $plugin_folder = '' ) {
 	}
 
 	foreach ( $plugin_files as $plugin_file ) {
-		if ( ! is_readable( "$plugin_root/$plugin_file" ) ) {
+		if ( ! \Conduit\is_readable( "$plugin_root/$plugin_file" ) ) {
 			continue;
 		}
 
